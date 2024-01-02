@@ -1,5 +1,9 @@
 # Netbox Documents Plugin
 
+----
+Fork of [this](https://github.com/jasonyates/netbox-documents) project, with small customizations (add support for virtual machines)
+----
+
 A plugin designed to faciliate the storage of site, circuit, device type and device specific documents within [NetBox](https://github.com/netbox-community/netbox)
 
 ## Features

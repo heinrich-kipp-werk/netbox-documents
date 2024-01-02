@@ -27,3 +27,8 @@ class CircuitDocumentViewSet(NetBoxModelViewSet):
     queryset = models.CircuitDocument.objects.prefetch_related('tags')
     serializer_class = CircuitDocumentSerializer
     filterset_class = filtersets.CircuitDocumentFilterSet
+
+class VirtualMachineDocumentViewSet(NetBoxModelViewSet):
+    queryset = models.CircuitDocument.objects.prefetch_related('tags')
+    serializer_class = CircuitDocumentSerializer
+    filterset_class = filtersets.CircuitDocumentFilterSet

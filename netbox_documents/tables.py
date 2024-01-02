@@ -1,7 +1,7 @@
 import django_tables2 as tables
 
 from netbox.tables import NetBoxTable, columns
-from .models import SiteDocument, LocationDocument, DeviceDocument, DeviceTypeDocument, CircuitDocument 
+from .models import SiteDocument, LocationDocument, DeviceDocument, VirtualMachineDocument, DeviceTypeDocument, CircuitDocument 
 
 SITE_DOCUMENT_LINK = """
 {% if record.size %}
@@ -32,6 +32,14 @@ DEVICE_DOCUMENT_LINK = """
     <a href="{% url 'plugins:netbox_documents:devicedocument' pk=record.pk %}">{% firstof record.name record.filename %}</a> (<a href="{{record.document.url}}" target="_blank">View Document</a>)
 {% else %}
     <a href="{% url 'plugins:netbox_documents:devicedocument' pk=record.pk %}">{% firstof record.name record.filename %}</a> (<a href="{{ record.external_url }}" target="_blank">View External Document</a>)
+{% endif %}
+"""
+
+VIRTUAL_MACHINE_DOCUMENT_LINK = """
+{% if record.size %}
+    <a href="{% url 'plugins:netbox_documents:virtualmachinedocument' pk=record.pk %}">{% firstof record.name record.filename %}</a> (<a href="{{record.document.url}}" target="_blank">View Document</a>)
+{% else %}
+    <a href="{% url 'plugins:netbox_documents:virtualmachinedocument' pk=record.pk %}">{% firstof record.name record.filename %}</a> (<a href="{{ record.external_url }}" target="_blank">View External Document</a>)
 {% endif %}
 """
 
@@ -94,6 +102,21 @@ class DeviceDocumentTable(NetBoxTable):
         fields = ('pk', 'id', 'name', 'document_type',  'size', 'filename', 'device', 'comments', 'actions', 'created', 'last_updated', 'tags')
         default_columns = ('name', 'document_type', 'device', 'tags')
 
+class VirtualMachineDocumentTable(NetBoxTable):
+    name = tables.TemplateColumn(template_code=VIRTUAL_MACHINE_DOCUMENT_LINK)
+    document_type = columns.ChoiceFieldColumn()
+    virtual_machine = tables.Column(
+        linkify=True
+    )
+
+    tags = columns.TagColumn(
+        url_name='dcim:sitegroup_list'
+    )
+
+    class Meta(NetBoxTable.Meta):
+        model = VirtualMachineDocument
+        fields = ('pk', 'id', 'name', 'document_type',  'size', 'filename', 'virtual_machine', 'comments', 'actions', 'created', 'last_updated', 'tags')
+        default_columns = ('name', 'document_type', 'virtual_machine', 'tags')
 
 class DeviceTypeDocumentTable(NetBoxTable):
     name = tables.TemplateColumn(template_code=DEVICE_TYPE_DOCUMENT_LINK)

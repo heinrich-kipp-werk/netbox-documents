@@ -34,6 +34,16 @@ urlpatterns = (
         'model': models.DeviceDocument
     }),
 
+    # VMDocument
+    path('virtual-machine-document/', views.VirtualMachineDocumentListView.as_view(), name='virtualmachinedocument_list'),
+    path('virtual-machine-document/add/', views.VirtualMachineDocumentEditView.as_view(), name='virtualmachinedocument_add'),
+    path('virtual-machine-document/<int:pk>/', views.VirtualMachineDocumentView.as_view(), name='virtualmachinedocument'),
+    path('virtual-machine-document/<int:pk>/edit/', views.VirtualMachineDocumentEditView.as_view(), name='virtualmachinedocument_edit'),
+    path('virtual-machine-document/<int:pk>/delete/', views.VirtualMachineDocumentDeleteView.as_view(), name='virtualmachinedocument_delete'),
+    path('virtual-machine-document/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='virtualmachinedocument_changelog', kwargs={
+        'model': models.VirtualMachineDocument
+    }),
+
     
     # DeviceTypeDocument
     path('device-type-document/', views.DeviceTypeDocumentListView.as_view(), name='devicetypedocument_list'),

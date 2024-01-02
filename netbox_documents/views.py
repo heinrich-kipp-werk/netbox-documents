@@ -62,6 +62,25 @@ class DeviceDocumentDeleteView(generic.ObjectDeleteView):
     queryset = models.DeviceDocument.objects.all()
 
 
+### VirtualMachineDocument
+class VirtualMachineDocumentView(generic.ObjectView):
+    queryset = models.VirtualMachineDocument.objects.all()
+
+class VirtualMachineDocumentListView(generic.ObjectListView):
+    queryset = models.VirtualMachineDocument.objects.all()
+    table = tables.VirtualMachineDocumentTable
+    filterset = filtersets.VirtualMachineDocumentFilterSet
+    filterset_form = forms.VirtualMachineDocumentFilterForm
+
+class VirtualMachineDocumentEditView(generic.ObjectEditView):
+    queryset = models.VirtualMachineDocument.objects.all()
+    form = forms.VirtualMachineDocumentForm
+
+    template_name = 'netbox_documents/virtualmachinedocument_edit.html'
+
+class VirtualMachineDocumentDeleteView(generic.ObjectDeleteView):
+    queryset = models.VirtualMachineDocument.objects.all()
+
 ### DeviceTypeDocument
 class DeviceTypeDocumentView(generic.ObjectView):
     queryset = models.DeviceTypeDocument.objects.all()

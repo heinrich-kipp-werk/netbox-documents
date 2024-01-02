@@ -52,6 +52,21 @@ if plugin_settings.get('enable_navigation_menu'):
                 )]
             )
         )
+
+    # Add a menu item for Virtual Machine Documents if enabled
+    if plugin_settings.get('enable_virtual_machine_documents'):
+        menuitem.append(
+            PluginMenuItem(
+                link='plugins:netbox_documents:virtualmachinedocument_list',
+                link_text='Virtual Machine Documents',
+                buttons=[PluginMenuButton(
+                    link='plugins:netbox_documents:virtualmachinedocument_add',
+                    title='Add',
+                    icon_class='mdi mdi-plus-thick',
+                    color=ButtonColorChoices.GREEN
+                )]
+            )
+        )
     
     # Add a menu item for Device Documents if enabled
     if plugin_settings.get('enable_device_type_documents'):

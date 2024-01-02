@@ -1,5 +1,5 @@
 from netbox.filtersets import NetBoxModelFilterSet
-from .models import SiteDocument, LocationDocument, DeviceDocument, DeviceTypeDocument, CircuitDocument 
+from .models import SiteDocument, LocationDocument, DeviceDocument, VirtualMachineDocument, DeviceTypeDocument, CircuitDocument 
 from django.db.models import Q
 
 class SiteDocumentFilterSet(NetBoxModelFilterSet):
@@ -35,6 +35,21 @@ class DeviceDocumentFilterSet(NetBoxModelFilterSet):
     class Meta:
         model = DeviceDocument
         fields = ('id', 'name', 'document_type', 'device')
+
+    def search(self, queryset, name, value):
+        if not value.strip():
+            return queryset
+        return queryset.filter(
+            Q(name__icontains=value) |
+            Q(document__icontains=value)
+        )
+
+
+class VirtualMachineDocumentFilterSet(NetBoxModelFilterSet):
+
+    class Meta:
+        model = VirtualMachineDocument
+        fields = ('id', 'name', 'document_type', 'virtual_machine')
 
     def search(self, queryset, name, value):
         if not value.strip():

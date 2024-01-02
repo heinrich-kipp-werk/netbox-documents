@@ -14,12 +14,14 @@ class NetboxDocuments(PluginConfig):
         "enable_location_documents": True,
         "enable_circuit_documents": True,
         "enable_device_documents": True,
+        "enable_virtual_machine_documents": True,
         "enable_device_type_documents": True, 
         "enable_navigation_menu": True,
         "site_documents_location": "left",
         "location_documents_location": "left",
         "circuit_documents_location": "left",
         "device_documents_location": "left",
+        "virtual_machine_documents_location": "left",
         "device_type_documents_location": "left", 
     }
 
