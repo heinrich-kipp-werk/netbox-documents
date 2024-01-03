@@ -90,7 +90,7 @@ class VirtualMachineDocumentList(PluginTemplateExtension):
         if plugin_settings.get('enable_virtual_machine_documents') and plugin_settings.get('virtual_machine_documents_location') == 'left':
 
             return self.render('netbox_documents/virtualmachinedocument_include.html', extra_context={
-                'device_documents': VirtualMachineDocument.objects.filter(device=self.context['object']),
+                'virtual_machine_documents': VirtualMachineDocument.objects.filter(virtual_machine=self.context['object']),
             })
 
         else:
@@ -101,7 +101,7 @@ class VirtualMachineDocumentList(PluginTemplateExtension):
         if plugin_settings.get('enable_virtual_machine_documents') and plugin_settings.get('virtual_machine_documents_location') == 'right':
 
             return self.render('netbox_documents/virtualmachinedocument_include.html', extra_context={
-                'device_documents': VirtualMachineDocument.objects.filter(device=self.context['object']),
+                'virtual_machine_documents': VirtualMachineDocument.objects.filter(virtual_machine=self.context['object']),
             })
 
         else:
@@ -158,4 +158,4 @@ class CircuitDocumentList(PluginTemplateExtension):
         else:
             return ""
 
-template_extensions = [SiteDocumentList, LocationDocumentList, DeviceDocumentList, DeviceTypeDocumentList, CircuitDocumentList]
+template_extensions = [SiteDocumentList, LocationDocumentList, DeviceDocumentList, DeviceTypeDocumentList, CircuitDocumentList, VirtualMachineDocumentList]

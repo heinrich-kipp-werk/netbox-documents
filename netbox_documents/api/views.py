@@ -1,7 +1,7 @@
 from netbox.api.viewsets import NetBoxModelViewSet
 
 from .. import models, filtersets
-from .serializers import SiteDocumentSerializer, LocationDocumentSerializer, DeviceDocumentSerializer, DeviceTypeDocumentSerializer, CircuitDocumentSerializer 
+from .serializers import SiteDocumentSerializer, LocationDocumentSerializer, DeviceDocumentSerializer, DeviceTypeDocumentSerializer, CircuitDocumentSerializer, VirtualMachineDocumentSerializer
 
 class SiteDocumentViewSet(NetBoxModelViewSet):
     queryset = models.SiteDocument.objects.prefetch_related('tags')
@@ -29,6 +29,6 @@ class CircuitDocumentViewSet(NetBoxModelViewSet):
     filterset_class = filtersets.CircuitDocumentFilterSet
 
 class VirtualMachineDocumentViewSet(NetBoxModelViewSet):
-    queryset = models.CircuitDocument.objects.prefetch_related('tags')
-    serializer_class = CircuitDocumentSerializer
-    filterset_class = filtersets.CircuitDocumentFilterSet
+    queryset = models.VirtualMachineDocument.objects.prefetch_related('tags')
+    serializer_class = VirtualMachineDocumentSerializer
+    filterset_class = filtersets.VirtualMachineDocumentFilterSet

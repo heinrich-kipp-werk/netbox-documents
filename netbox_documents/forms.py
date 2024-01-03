@@ -122,7 +122,7 @@ class DeviceDocumentFilterForm(NetBoxModelFilterSetForm):
 class VirtualMachineDocumentForm(NetBoxModelForm):
     comments = CommentField()
 
-    virtualmachine = DynamicModelChoiceField(
+    virtual_machine = DynamicModelChoiceField(
         queryset=VirtualMachine.objects.all()
     )
 

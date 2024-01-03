@@ -439,7 +439,7 @@ class VirtualMachineDocument(NetBoxModel):
 
     document_type = models.CharField(
         max_length=30,
-        choices=DeviceDocTypeChoices
+        choices=VirtualMachineDocTypeChoices
     )
 
     virtual_machine = models.ForeignKey(
