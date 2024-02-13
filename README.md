@@ -2,6 +2,17 @@
 
 ----
 Fork of [this](https://github.com/jasonyates/netbox-documents) project, with small customizations (adds support for virtual machines)
+
+### Dev Installation
+```bash
+sudo su - root
+source /opt/netbox/venv/bin/active
+cd {netbox-documents-repository-folder}
+python3 setup.py develop
+#Add the plugin to the plugin list in netbox
+cd /opt/netbox/netbox
+python3 manage.py migrate
+```
 ----
 
 A plugin designed to faciliate the storage of site, circuit, device type and device specific documents within [NetBox](https://github.com/netbox-community/netbox)
